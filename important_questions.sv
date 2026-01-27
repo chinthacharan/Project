@@ -230,6 +230,7 @@
 
 	/*
 		Phase and their Description
+  
 		reset_phase
 		Apply and monitor reset.
 
@@ -242,6 +243,10 @@
 		shutdown_phase
 		Graceful test wrap-up.
 
+  		All the above phases also have their own pre-phases and post-phases. Eg; pre-reset, reset, post-reset.
+
+      		The below phases are post run_phase UVM phases.
+	
 		extract_phase
 		Gather results.
 
@@ -262,10 +267,12 @@
 	/*
 		✅ Function
 			•	Must return a value.
+      			•	Can be made to not return a value using 'void' keyword.
 			•	Cannot have timing controls like #, @, or wait.
 			•	Executes in zero simulation time.
 			•	Used for pure computations (e.g., arithmetic, logic).
-			•	Only allows input arguments.
+			•	Can have input, output or inout arguments.
+			•	Arguments can be passed through pass-by-reference using ref keyword.
 			•	Cannot be forked or run in parallel.
 			•	Can be called inside expressions (e.g., if (my_func(x))).
 
@@ -1159,7 +1166,7 @@ endmodule
 		Dynamic size array: An array whose size can be changed during run time.
 		Associative array: Associative array is used when size is not known. Dict format using key value pair storage.
 			It doesn't preserve the order of storage. accessing element of this is O(1).
-			
+		Queues: An array in SV which can dynamically grow or shrink its size based on data.
 		dynamic array:
 
 		int array[];
